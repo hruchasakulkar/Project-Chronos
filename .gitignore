@@ -1,0 +1,12 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# Local SQLite database
+*.db
+
+# macOS files
+.DS_Store
+
+# Environment variables
+.env
