@@ -1,90 +1,57 @@
-CHRONOS // GAMMA // PAST ACCESS HISTORY
+CHRONOS // GAMMA // ACCESS AND RECORD-HANDLING HISTORY
 CASE R2-22
-
 ACCESS ARCHIVE — 20:40–21:20
 
-21:01:44
-USER: Aria Sen
-ID: AS-17
-ACTION: READ
-RESOURCE: T-32
-SESSION: S-88A
-AUTHORIZATION: VALID
+REGISTERED CANDIDATES
+Aria Sen | AS-17 | timeline analyst
+Noah Vale | NV-09 | systems engineer
+Mira Kael | MK-22 | security auditor
 
-21:05:12
-USER: Noah Vale
-ID: NV-09
-ACTION: APPROVE
-RESOURCE: D-63
-SESSION: S-88B
-AUTHORIZATION: VALID
-
-21:07:31
-USER: Mira Kael
-ID: MK-22
-ACTION: READ
-RESOURCE: T-32
-SESSION: S-88C
-AUTHORIZATION: VALID
-
-21:08:02
-USER: Aria Sen
-ID: AS-17
+RECORDED ACTIONS
+21:03:27
+USER: Noah Vale (NV-09)
 ACTION: MODIFY
-RESOURCE: D-64
-SESSION: S-822
+RESOURCE: R2-22-B
+DETAIL: archive export mode: RAW -> SUMMARY
+SESSION: S-NV-09-2
 AUTHORIZATION: VALID
-
-21:08:41
-USER: Elias Voss
-ID: EV-04
-ACTION: READ
-RESOURCE: RECOVERY
-SESSION: S-88D
-AUTHORIZATION: VALID
-
-21:10:19
-USER: Aria Sen
-ID: AS-17
+21:07:44
+USER: Aria Sen (AS-17)
 ACTION: MODIFY
-RESOURCE: D-65
-SESSION: S-822
+RESOURCE: R2-22-A
+DETAIL: projection field map: COMPLETE -> OMIT-DELTA
+SESSION: S-AS-17-1
 AUTHORIZATION: VALID
-
-21:12:03
-USER: Aria Sen
-ID: AS-17
-ACTION: REVERT
-RESOURCE: D-64
-SESSION: S-822
+21:10:32
+USER: Mira Kael (MK-22)
+ACTION: MODIFY
+RESOURCE: R2-22-C
+DETAIL: audit rotation: 21:30 -> 21:20
+SESSION: S-MK-22-3
 AUTHORIZATION: VALID
-
-21:18:22
-USER: Aria Sen
-ID: AS-17
-ACTION: EDIT-AUDIT
-RESOURCE: D-64
-SESSION: S-822
+21:12:18
+USER: Aria Sen (AS-17)
+ACTION: REVISE
+RESOURCE: AUDIT VIEW
+DETAIL: Updated a displayed record field
+SESSION: S-AS-17-1
 AUTHORIZATION: VALID
-
-21:13:07
-USER: Aria Sen
-ID: AS-17
-ACTION: READ
-RESOURCE: AUDIT
-SESSION: S-88A
-AUTHORIZATION: VALID
-
-21:13:44
-USER: Mira Kael
-ID: MK-22
+21:12:42
+USER: Noah Vale (NV-09)
 ACTION: EXPORT
-RESOURCE: T-32/AUDIT
-SESSION: S-88C
+RESOURCE: AUDIT SNAPSHOT
+DETAIL: Created a separate copy for review
+SESSION: S-NV-09-2
+AUTHORIZATION: VALID
+21:13:06
+USER: Mira Kael (MK-22)
+ACTION: ROTATE
+RESOURCE: LOG WINDOW
+DETAIL: Applied archive rotation
+SESSION: S-MK-22-3
 AUTHORIZATION: VALID
 
-ARCHIVE INTERPRETATION
-READ and EXPORT events establish observation, not authorship. APPROVE establishes workflow authority, not execution. MODIFY/REVERT/SCHEDULE events must be matched against the state that existed when the incident began.
+ARCHIVE NOTE
+All three candidates interacted with configuration or record-handling functions. Compare each action with the independent event sequence.
 
-AUDIT WARNING
-Post-incident audit activity may alter labels or remove diagnostic visibility. Distinguish investigation activity from actions that conceal the initiating state.
+Cross-reference action IDs and timestamps with ALPHA and BETA before deciding which action is causally relevant.

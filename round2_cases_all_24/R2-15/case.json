@@ -1,7 +1,7 @@
 {
   "case_id": "R2-15",
   "archetype": "Time-Window Manipulator",
-  "incident": "an early cache invalidation creates a later projection drift",
+  "incident": "Projection cache drift",
   "culprit": "Aria Sen",
   "candidates": [
     {
@@ -25,6 +25,6 @@
     "beta": "incident_report.txt",
     "gamma": "access_history.log"
   },
-  "intended_deduction": "Requires correlating multiple plausible configuration changes, incident timing, and access/session history; no single file identifies the culprit.",
-  "difficulty_target": "5/5"
+  "intended_deduction": "Correlate configuration or schedule history with the incident timeline and operator activity. No single file identifies the culprit.",
+  "difficulty_target": "3/5"
 }

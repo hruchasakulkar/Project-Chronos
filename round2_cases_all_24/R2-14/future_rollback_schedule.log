@@ -1,45 +1,38 @@
-CHRONOS // ALPHA // FUTURE CONFIGURATION AUDIT
+CHRONOS // ALPHA // SCHEDULE AUDIT
 CASE R2-14
-INCIDENT: a rollback was prepared hours earlier and triggered during an unrelated maintenance window
+INCIDENT: Rollback state divergence
 
-CONFIGURATION DELTAS — T-24
+SYSTEM BASELINE — 20:55
+Primary service: ACTIVE
+Configuration snapshot: PRE-INCIDENT
+Queue, archive, and service checks: within normal range
+Prior successful run: recorded
 
-20:58:14  D-54
-RESOURCE: T-24
-CHANGE: observation window 90s -> 120s
-STATUS: APPROVED
+CHANGE HISTORY
+21:03:27 | R2-14-B
+OPERATOR: Aria Sen (AS-17)
+ACTION: SCHEDULE
+SETTING: archive export schedule
+CHANGE: 21:10 -> 21:17
+STATUS: SCHEDULED
+EFFECTIVE: 21:16:00
+21:06:12 | R2-14-A
+OPERATOR: Mira Kael (MK-22)
+ACTION: SCHEDULE
+SETTING: rollback target
+CHANGE: checkpoint 18 -> checkpoint 14
+STATUS: SCHEDULED
+EFFECTIVE: 21:10:00
+21:10:32 | R2-14-C
+OPERATOR: Noah Vale (NV-09)
+ACTION: SCHEDULE
+SETTING: observation refresh
+CHANGE: 21:05 -> 21:13
+STATUS: SCHEDULED
+EFFECTIVE: 21:18:00
 
-21:03:27  D-55
-RESOURCE: T-24
-CHANGE: prediction threshold 0.72 -> 0.68
-STATUS: APPROVED
+21:12:00 | CONFIGURATION SNAPSHOT
+More than one changed value is present; the snapshot does not label a causal change.
 
-21:07:46  D-56
-RESOURCE: T-24
-CHANGE: recovery mode AUTO -> MANUAL
-STATUS: PENDING
-
-21:09:11  D-57
-RESOURCE: T-24
-CHANGE: recovery window 30s -> 10s
-STATUS: APPROVED
-
-21:12:03  D-56
-RESOURCE: T-24
-ACTION: REVERTED
-
-21:13:19  D-58
-RESOURCE: T-24
-CHANGE: safety threshold 0.68 -> 0.71
-STATUS: APPROVED
-
-21:16:02  D-59
-RESOURCE: T-24
-CHANGE: archive verbosity LOW -> HIGH
-STATUS: APPROVED
-
-NOTE: approval status describes whether a change was permitted by workflow. It does not
-indicate whether the resulting state was causal to the incident.
-
-SCHEDULER NOTE
-D-56 was queued before the visible incident window and became effective only when the scheduled window opened.
+AUDIT NOTE
+Schedule creation and effective time are separate fields; an action may activate after its author leaves the session.

@@ -1,45 +1,38 @@
-CHRONOS // ALPHA // FUTURE CONFIGURATION AUDIT
+CHRONOS // ALPHA // SCHEDULE AUDIT
 CASE R2-16
-INCIDENT: a delayed permission rule opens a configuration path during a later event
+INCIDENT: Temporary permission exposure
 
-CONFIGURATION DELTAS — T-26
+SYSTEM BASELINE — 20:55
+Primary service: ACTIVE
+Configuration snapshot: PRE-INCIDENT
+Queue, archive, and service checks: within normal range
+Prior successful run: recorded
 
-20:58:14  D-56
-RESOURCE: T-26
-CHANGE: observation window 90s -> 120s
-STATUS: APPROVED
+CHANGE HISTORY
+21:03:27 | R2-16-B
+OPERATOR: Aria Sen (AS-17)
+ACTION: SCHEDULE
+SETTING: token expiry policy
+CHANGE: 15 min -> 12 min
+STATUS: SCHEDULED
+EFFECTIVE: 21:16:00
+21:06:12 | R2-16-A
+OPERATOR: Elias Voss (EV-04)
+ACTION: SCHEDULE
+SETTING: permission rule activation
+CHANGE: after approval -> at window open
+STATUS: SCHEDULED
+EFFECTIVE: 21:10:00
+21:10:32 | R2-16-C
+OPERATOR: Noah Vale (NV-09)
+ACTION: SCHEDULE
+SETTING: permission cache refresh
+CHANGE: manual -> every 10 min
+STATUS: SCHEDULED
+EFFECTIVE: 21:18:00
 
-21:03:27  D-57
-RESOURCE: T-26
-CHANGE: prediction threshold 0.72 -> 0.68
-STATUS: APPROVED
+21:12:00 | CONFIGURATION SNAPSHOT
+More than one changed value is present; the snapshot does not label a causal change.
 
-21:07:46  D-58
-RESOURCE: T-26
-CHANGE: recovery mode AUTO -> MANUAL
-STATUS: PENDING
-
-21:09:11  D-59
-RESOURCE: T-26
-CHANGE: recovery window 30s -> 10s
-STATUS: APPROVED
-
-21:12:03  D-58
-RESOURCE: T-26
-ACTION: REVERTED
-
-21:13:19  D-60
-RESOURCE: T-26
-CHANGE: safety threshold 0.68 -> 0.71
-STATUS: APPROVED
-
-21:16:02  D-61
-RESOURCE: T-26
-CHANGE: archive verbosity LOW -> HIGH
-STATUS: APPROVED
-
-NOTE: approval status describes whether a change was permitted by workflow. It does not
-indicate whether the resulting state was causal to the incident.
-
-SCHEDULER NOTE
-D-58 was queued before the visible incident window and became effective only when the scheduled window opened.
+AUDIT NOTE
+Schedule creation and effective time are separate fields; an action may activate after its author leaves the session.

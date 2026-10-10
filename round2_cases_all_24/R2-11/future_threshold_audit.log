@@ -1,45 +1,35 @@
-CHRONOS // ALPHA // FUTURE CONFIGURATION AUDIT
+CHRONOS // ALPHA // IDENTITY AND CONFIGURATION AUDIT
 CASE R2-11
-INCIDENT: analyst account used to suppress a warning threshold
+INCIDENT: Suppressed warning sequence
 
-CONFIGURATION DELTAS — T-21
+SYSTEM BASELINE — 20:55
+Primary service: ACTIVE
+Configuration snapshot: PRE-INCIDENT
+Queue, archive, and service checks: within normal range
+Prior successful run: recorded
 
-20:58:14  D-51
-RESOURCE: T-21
-CHANGE: observation window 90s -> 120s
+CHANGE HISTORY
+21:03:27 | R2-11-B
+OPERATOR: Noah Vale (NV-09)
+ACTION: MODIFY
+SETTING: sampling interval
+CHANGE: 10 s -> 8 s
+STATUS: APPROVED
+21:08:14 | R2-11-A
+OPERATOR: Aria Sen (AS-17)
+ACTION: MODIFY
+SETTING: warning threshold
+CHANGE: 0.65 -> 0.82
+STATUS: APPROVED
+21:10:32 | R2-11-C
+OPERATOR: Mira Kael (MK-22)
+ACTION: MODIFY
+SETTING: archive verbosity
+CHANGE: LOW -> MEDIUM
 STATUS: APPROVED
 
-21:03:27  D-52
-RESOURCE: T-21
-CHANGE: prediction threshold 0.72 -> 0.68
-STATUS: APPROVED
+21:12:00 | CONFIGURATION SNAPSHOT
+More than one changed value is present; the snapshot does not label a causal change.
 
-21:07:46  D-53
-RESOURCE: T-21
-CHANGE: recovery mode AUTO -> MANUAL
-STATUS: PENDING
-
-21:09:11  D-54
-RESOURCE: T-21
-CHANGE: recovery window 30s -> 10s
-STATUS: APPROVED
-
-21:12:03  D-53
-RESOURCE: T-21
-ACTION: REVERTED
-
-21:13:19  D-55
-RESOURCE: T-21
-CHANGE: safety threshold 0.68 -> 0.71
-STATUS: APPROVED
-
-21:16:02  D-56
-RESOURCE: T-21
-CHANGE: archive verbosity LOW -> HIGH
-STATUS: APPROVED
-
-NOTE: approval status describes whether a change was permitted by workflow. It does not
-indicate whether the resulting state was causal to the incident.
-
-SECURITY NOTE
-D-53 was issued under a valid identity, but its console fingerprint is not present in the registered workstation list.
+AUDIT NOTE
+A valid identity does not, by itself, prove that the recorded workstation context was expected.

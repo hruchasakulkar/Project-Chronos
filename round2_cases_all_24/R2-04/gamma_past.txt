@@ -1,79 +1,57 @@
-CHRONOS // GAMMA // PAST ACCESS HISTORY
+CHRONOS // GAMMA // OPERATOR ACCESS HISTORY
 CASE R2-04
-
 ACCESS ARCHIVE — 20:40–21:20
 
-21:01:44
-USER: Aria Sen
-ID: AS-17
-ACTION: READ
-RESOURCE: T-14
-SESSION: S-88A
-AUTHORIZATION: VALID
+REGISTERED CANDIDATES
+Elias Voss | EV-04 | archive operator
+Aria Sen | AS-17 | timeline analyst
+Noah Vale | NV-09 | systems engineer
 
-21:05:12
-USER: Noah Vale
-ID: NV-09
-ACTION: APPROVE
-RESOURCE: D-45
-SESSION: S-88B
-AUTHORIZATION: VALID
-
-21:07:31
-USER: Mira Kael
-ID: MK-22
-ACTION: READ
-RESOURCE: T-14
-SESSION: S-88C
-AUTHORIZATION: VALID
-
-21:08:02
-USER: Elias Voss
-ID: EV-04
+RECORDED ACTIONS
+21:03:27
+USER: Aria Sen (AS-17)
 ACTION: MODIFY
-RESOURCE: D-46
-SESSION: S-804
+RESOURCE: R2-04-B
+DETAIL: prediction threshold: 0.72 -> 0.69
+SESSION: S-AS-17-2
 AUTHORIZATION: VALID
-
-21:08:41
-USER: Elias Voss
-ID: EV-04
-ACTION: READ
-RESOURCE: RECOVERY
-SESSION: S-88D
-AUTHORIZATION: VALID
-
-21:10:19
-USER: Elias Voss
-ID: EV-04
+21:08:14
+USER: Elias Voss (EV-04)
 ACTION: MODIFY
-RESOURCE: D-47
-SESSION: S-804
+RESOURCE: R2-04-A
+DETAIL: prediction seed map: R-17 -> R-19
+SESSION: S-EV-04-1
 AUTHORIZATION: VALID
-
-21:12:03
-USER: Elias Voss
-ID: EV-04
-ACTION: REVERT
-RESOURCE: D-46
-SESSION: S-804
+21:10:32
+USER: Noah Vale (NV-09)
+ACTION: MODIFY
+RESOURCE: R2-04-C
+DETAIL: input observation window: 90 s -> 105 s
+SESSION: S-NV-09-3
 AUTHORIZATION: VALID
-
-21:13:07
-USER: Aria Sen
-ID: AS-17
+21:11:42
+USER: Elias Voss (EV-04)
 ACTION: READ
-RESOURCE: AUDIT
-SESSION: S-88A
+RESOURCE: SERVICE STATUS
+DETAIL: Reviewed current status
+SESSION: S-EV-04-1
+AUTHORIZATION: VALID
+21:12:18
+USER: Aria Sen (AS-17)
+ACTION: READ
+RESOURCE: CONFIG SNAPSHOT
+DETAIL: Reviewed active values
+SESSION: S-AS-17-2
+AUTHORIZATION: VALID
+21:13:06
+USER: Noah Vale (NV-09)
+ACTION: READ
+RESOURCE: AUDIT HISTORY
+DETAIL: Reviewed recent operations
+SESSION: S-NV-09-3
 AUTHORIZATION: VALID
 
-21:13:44
-USER: Mira Kael
-ID: MK-22
-ACTION: EXPORT
-RESOURCE: T-14/AUDIT
-SESSION: S-88C
-AUTHORIZATION: VALID
+AUDIT NOTE
+The archive attributes recorded operations to registered sessions. It does not independently establish whether an operation explains the incident.
 
-ARCHIVE INTERPRETATION
-READ and EXPORT events establish observation, not authorship. APPROVE establishes workflow authority, not execution. MODIFY/REVERT/SCHEDULE events must be matched against the state that existed when the incident began.
+Cross-reference action IDs and timestamps with ALPHA and BETA before deciding which action is causally relevant.

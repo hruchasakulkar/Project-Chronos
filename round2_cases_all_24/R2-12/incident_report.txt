@@ -1,7 +1,7 @@
 CHRONOS // BETA // PRESENT INCIDENT REPORT
 CASE R2-12
 
-INCIDENT: security identity used to alter an incident classification after the event began
+INCIDENT: Cross-timeline synchronization failure
 
 21:14:02  FIRST INSTABILITY DETECTED
 21:15:18  prediction drift / synchronization variance begins
@@ -9,20 +9,34 @@ INCIDENT: security identity used to alter an incident classification after the e
 21:17:31  timeline synchronization drops below safe threshold
 
 PRELIMINARY ANALYSIS
-- the first approved threshold change is NOT sufficient to explain the failure.
-- telemetry indicates that the recovery subsystem entered a non-default state shortly
-  before the first failed recovery.
-- the relevant state was present for approximately 4–6 minutes before instability
-  became visible.
-- a later approved change occurred after the failure had already begun and is therefore
-  unlikely to be the initiating event.
+- the prediction service was active when the first
+  instability was recorded; its configuration had
+  changed earlier in the investigation window.
+- the retry queue was checked before recovery began.
+  available records show no unusual queue buildup.
+- recovery activity departed from its normal pattern
+  before the system reported an unsuccessful attempt.
+- the incident began after several configuration
+  changes, but their timing alone does not establish
+  which change initiated the failure.
+- a later configuration change was recorded close to
+  the incident. its effect must be assessed against
+  the first observed instability, not just its approval.
+
+HISTORICAL COMPARISON
+Previous successful runs show that prediction,
+message handling, and recovery can affect the final
+synchronization result at different stages.
+No single subsystem status is sufficient to explain
+the complete incident.
 
 POSSIBLE SOURCES
 1. prediction configuration
 2. recovery configuration
-3. operator override / scheduled state
+3. operator override or another active system setting
 
 INVESTIGATION NOTE
-Do not treat an APPROVED label as proof that the change was harmless.
+Do not treat an APPROVED label as proof that a change
+was harmless.
 Do not treat a READ event as proof of modification.
-The initiating state must be reconstructed from the timeline and access history.
+Reconstruct the active state using all three files.
