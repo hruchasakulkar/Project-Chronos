@@ -11,10 +11,10 @@ RESOURCE: T-22
 SESSION: S-88A
 AUTHORIZATION: VALID
 
-21:05:12
+21:03:27
 USER: Aria Sen
 ID: AS-17
-ACTION: APPROVE
+ACTION: MODIFY
 RESOURCE: D-53
 SESSION: S-88B
 AUTHORIZATION: VALID
@@ -27,28 +27,12 @@ RESOURCE: T-22
 SESSION: S-88C
 AUTHORIZATION: VALID
 
-21:08:02
-USER: Mira Kael
-ID: MK-22
+21:08:06
+USER: Noah Vale
+ID: NV-09
 ACTION: MODIFY
 RESOURCE: D-54
-SESSION: S-812
-AUTHORIZATION: VALID
-
-21:08:02
-USER: Mira Kael
-ID: MK-22
-ACTION: MODIFY
-RESOURCE: D-54
-SESSION: S-812-UNREG
-AUTHORIZATION: VALID
-
-21:08:41
-USER: Elias Voss
-ID: EV-04
-ACTION: READ
-RESOURCE: RECOVERY
-SESSION: S-88D
+SESSION: S-88C
 AUTHORIZATION: VALID
 
 21:10:19
@@ -56,15 +40,15 @@ USER: Mira Kael
 ID: MK-22
 ACTION: MODIFY
 RESOURCE: D-55
-SESSION: S-812
+SESSION: S-88A
 AUTHORIZATION: VALID
 
 21:12:03
-USER: Mira Kael
-ID: MK-22
+USER: Noah Vale
+ID: NV-09
 ACTION: REVERT
 RESOURCE: D-54
-SESSION: S-812
+SESSION: S-88C
 AUTHORIZATION: VALID
 
 21:13:07
@@ -75,8 +59,27 @@ RESOURCE: AUDIT
 SESSION: S-88A
 AUTHORIZATION: VALID
 
-ARCHIVE INTERPRETATION
-READ and EXPORT events establish observation, not authorship. APPROVE establishes workflow authority, not execution. MODIFY/REVERT/SCHEDULE events must be matched against the state that existed when the incident began.
+21:13:19
+USER: Aria Sen
+ID: AS-17
+ACTION: MODIFY
+RESOURCE: D-56
+SESSION: S-88B
+AUTHORIZATION: VALID
 
-IDENTITY WARNING
-A valid user ID can appear on a session originating from an unregistered console. Treat account ownership and physical/session authorship as separate questions.
+21:14:02
+SYSTEM: INCIDENT MONITOR
+ACTION: RECORD
+RESOURCE: FIRST INSTABILITY
+RESULT: RECORDED
+
+ARCHIVE INTERPRETATION
+READ establishes observation, not authorship.
+APPROVE establishes workflow authority, not execution.
+MODIFY and REVERT events must be matched against
+the configuration state active when the incident began.
+
+IDENTITY NOTE
+The listed actions were recorded under registered
+sessions. Session attribution does not, by itself,
+establish whether an action caused the incident.

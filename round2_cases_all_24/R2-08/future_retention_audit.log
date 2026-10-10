@@ -1,45 +1,35 @@
-CHRONOS // ALPHA // FUTURE CONFIGURATION AUDIT
+CHRONOS // ALPHA // IDENTITY AND CONFIGURATION AUDIT
 CASE R2-08
-INCIDENT: security account used from an unregistered console to alter archive retention
+INCIDENT: Archive retention gap
 
-CONFIGURATION DELTAS — T-18
+SYSTEM BASELINE — 20:55
+Primary service: ACTIVE
+Configuration snapshot: PRE-INCIDENT
+Queue, archive, and service checks: within normal range
+Prior successful run: recorded
 
-20:58:14  D-48
-RESOURCE: T-18
-CHANGE: observation window 90s -> 120s
+CHANGE HISTORY
+21:03:27 | R2-08-B
+OPERATOR: Aria Sen (AS-17)
+ACTION: MODIFY
+SETTING: archive index mode
+CHANGE: FULL -> COMPACT
+STATUS: APPROVED
+21:08:14 | R2-08-A
+OPERATOR: Mira Kael (MK-22)
+ACTION: MODIFY
+SETTING: archive retention period
+CHANGE: 72 h -> 24 h
+STATUS: APPROVED
+21:10:32 | R2-08-C
+OPERATOR: Noah Vale (NV-09)
+ACTION: MODIFY
+SETTING: rotation window
+CHANGE: 02:00 -> 01:30
 STATUS: APPROVED
 
-21:03:27  D-49
-RESOURCE: T-18
-CHANGE: prediction threshold 0.72 -> 0.68
-STATUS: APPROVED
+21:12:00 | CONFIGURATION SNAPSHOT
+More than one changed value is present; the snapshot does not label a causal change.
 
-21:07:46  D-50
-RESOURCE: T-18
-CHANGE: recovery mode AUTO -> MANUAL
-STATUS: PENDING
-
-21:09:11  D-51
-RESOURCE: T-18
-CHANGE: recovery window 30s -> 10s
-STATUS: APPROVED
-
-21:12:03  D-50
-RESOURCE: T-18
-ACTION: REVERTED
-
-21:13:19  D-52
-RESOURCE: T-18
-CHANGE: safety threshold 0.68 -> 0.71
-STATUS: APPROVED
-
-21:16:02  D-53
-RESOURCE: T-18
-CHANGE: archive verbosity LOW -> HIGH
-STATUS: APPROVED
-
-NOTE: approval status describes whether a change was permitted by workflow. It does not
-indicate whether the resulting state was causal to the incident.
-
-SECURITY NOTE
-D-50 was issued under a valid identity, but its console fingerprint is not present in the registered workstation list.
+AUDIT NOTE
+A valid identity does not, by itself, prove that the recorded workstation context was expected.

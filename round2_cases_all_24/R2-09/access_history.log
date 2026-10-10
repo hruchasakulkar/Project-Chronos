@@ -1,82 +1,57 @@
-CHRONOS // GAMMA // PAST ACCESS HISTORY
+CHRONOS // GAMMA // ACCESS AND SESSION HISTORY
 CASE R2-09
-
 ACCESS ARCHIVE — 20:40–21:20
 
-21:01:44
-USER: Noah Vale
-ID: NV-09
-ACTION: READ
-RESOURCE: T-19
-SESSION: S-88A
-AUTHORIZATION: VALID
+REGISTERED CANDIDATES
+Noah Vale | NV-09 | systems engineer
+Aria Sen | AS-17 | timeline analyst
+Mira Kael | MK-22 | security auditor
 
-21:05:12
-USER: Aria Sen
-ID: AS-17
-ACTION: APPROVE
-RESOURCE: D-50
-SESSION: S-88B
-AUTHORIZATION: VALID
-
-21:07:31
-USER: Mira Kael
-ID: MK-22
-ACTION: READ
-RESOURCE: T-19
-SESSION: S-88C
-AUTHORIZATION: VALID
-
-21:08:02
-USER: Noah Vale
-ID: NV-09
+RECORDED ACTIONS
+21:03:27
+USER: Aria Sen (AS-17)
 ACTION: MODIFY
-RESOURCE: D-51
-SESSION: S-809
+RESOURCE: R2-09-B
+DETAIL: prediction threshold: 0.71 -> 0.69
+SESSION: S-AS-17-2
 AUTHORIZATION: VALID
-
-21:08:02
-USER: Noah Vale
-ID: NV-09
+21:08:14
+USER: Noah Vale (NV-09)
 ACTION: MODIFY
-RESOURCE: D-51
-SESSION: S-809-UNREG
+RESOURCE: R2-09-A
+DETAIL: prediction seed: P-14 -> P-19
+SESSION: S-NV-09-1
 AUTHORIZATION: VALID
-
-21:08:41
-USER: Elias Voss
-ID: EV-04
-ACTION: READ
-RESOURCE: RECOVERY
-SESSION: S-88D
-AUTHORIZATION: VALID
-
-21:10:19
-USER: Noah Vale
-ID: NV-09
+21:10:32
+USER: Mira Kael (MK-22)
 ACTION: MODIFY
-RESOURCE: D-52
-SESSION: S-809
+RESOURCE: R2-09-C
+DETAIL: cache refresh policy: ON-CHANGE -> PERIODIC
+SESSION: S-MK-22-3
 AUTHORIZATION: VALID
-
-21:12:03
-USER: Noah Vale
-ID: NV-09
-ACTION: REVERT
-RESOURCE: D-51
-SESSION: S-809
-AUTHORIZATION: VALID
-
-21:13:07
-USER: Noah Vale
-ID: NV-09
+21:11:42
+USER: Noah Vale (NV-09)
 ACTION: READ
-RESOURCE: AUDIT
-SESSION: S-88A
+RESOURCE: SERVICE STATUS
+DETAIL: Reviewed current status
+SESSION: S-NV-09-1
+AUTHORIZATION: VALID
+21:12:18
+USER: Aria Sen (AS-17)
+ACTION: READ
+RESOURCE: CONFIG SNAPSHOT
+DETAIL: Reviewed active values
+SESSION: S-AS-17-2
+AUTHORIZATION: VALID
+21:13:06
+USER: Mira Kael (MK-22)
+ACTION: READ
+RESOURCE: SESSION AUDIT
+DETAIL: Reviewed recent operations
+SESSION: S-MK-22-3
 AUTHORIZATION: VALID
 
-ARCHIVE INTERPRETATION
-READ and EXPORT events establish observation, not authorship. APPROVE establishes workflow authority, not execution. MODIFY/REVERT/SCHEDULE events must be matched against the state that existed when the incident began.
+SESSION NOTE
+Each candidate has a different session-context record. Compare context with the action and its effect; account ownership alone does not establish authorship.
 
-IDENTITY WARNING
-A valid user ID can appear on a session originating from an unregistered console. Treat account ownership and physical/session authorship as separate questions.
+Cross-reference action IDs and timestamps with ALPHA and BETA before deciding which action is causally relevant.

@@ -1,45 +1,38 @@
-CHRONOS // ALPHA // FUTURE CONFIGURATION AUDIT
+CHRONOS // ALPHA // SCHEDULE AUDIT
 CASE R2-17
-INCIDENT: a future timestamp causes an automated cleanup to erase a needed state
+INCIDENT: Missing timeline state
 
-CONFIGURATION DELTAS — T-27
+SYSTEM BASELINE — 20:55
+Primary service: ACTIVE
+Configuration snapshot: PRE-INCIDENT
+Queue, archive, and service checks: within normal range
+Prior successful run: recorded
 
-20:58:14  D-57
-RESOURCE: T-27
-CHANGE: observation window 90s -> 120s
-STATUS: APPROVED
+CHANGE HISTORY
+21:03:27 | R2-17-B
+OPERATOR: Aria Sen (AS-17)
+ACTION: SCHEDULE
+SETTING: archive compaction
+CHANGE: 21:15 -> 21:25
+STATUS: SCHEDULED
+EFFECTIVE: 21:16:00
+21:06:12 | R2-17-A
+OPERATOR: Noah Vale (NV-09)
+ACTION: SCHEDULE
+SETTING: cleanup cutoff
+CHANGE: 21:30 -> 21:10
+STATUS: SCHEDULED
+EFFECTIVE: 21:10:00
+21:10:32 | R2-17-C
+OPERATOR: Mira Kael (MK-22)
+ACTION: SCHEDULE
+SETTING: snapshot rotation
+CHANGE: 21:05 -> 21:18
+STATUS: SCHEDULED
+EFFECTIVE: 21:18:00
 
-21:03:27  D-58
-RESOURCE: T-27
-CHANGE: prediction threshold 0.72 -> 0.68
-STATUS: APPROVED
+21:12:00 | CONFIGURATION SNAPSHOT
+More than one changed value is present; the snapshot does not label a causal change.
 
-21:07:46  D-59
-RESOURCE: T-27
-CHANGE: recovery mode AUTO -> MANUAL
-STATUS: PENDING
-
-21:09:11  D-60
-RESOURCE: T-27
-CHANGE: recovery window 30s -> 10s
-STATUS: APPROVED
-
-21:12:03  D-59
-RESOURCE: T-27
-ACTION: REVERTED
-
-21:13:19  D-61
-RESOURCE: T-27
-CHANGE: safety threshold 0.68 -> 0.71
-STATUS: APPROVED
-
-21:16:02  D-62
-RESOURCE: T-27
-CHANGE: archive verbosity LOW -> HIGH
-STATUS: APPROVED
-
-NOTE: approval status describes whether a change was permitted by workflow. It does not
-indicate whether the resulting state was causal to the incident.
-
-SCHEDULER NOTE
-D-59 was queued before the visible incident window and became effective only when the scheduled window opened.
+AUDIT NOTE
+Schedule creation and effective time are separate fields; an action may activate after its author leaves the session.

@@ -1,45 +1,35 @@
-CHRONOS // ALPHA // FUTURE CONFIGURATION AUDIT
+CHRONOS // ALPHA // CONFIGURATION AND RECORD AUDIT
 CASE R2-22
-INCIDENT: an archive export is edited after a damaging configuration change
+INCIDENT: Archive export inconsistency
 
-CONFIGURATION DELTAS — T-32
+SYSTEM BASELINE — 20:55
+Primary service: ACTIVE
+Configuration snapshot: PRE-INCIDENT
+Queue, archive, and service checks: within normal range
+Prior successful run: recorded
 
-20:58:14  D-62
-RESOURCE: T-32
-CHANGE: observation window 90s -> 120s
+CHANGE HISTORY
+21:03:27 | R2-22-B
+OPERATOR: Noah Vale (NV-09)
+ACTION: MODIFY
+SETTING: archive export mode
+CHANGE: RAW -> SUMMARY
+STATUS: APPROVED
+21:07:44 | R2-22-A
+OPERATOR: Aria Sen (AS-17)
+ACTION: MODIFY
+SETTING: projection field map
+CHANGE: COMPLETE -> OMIT-DELTA
+STATUS: APPROVED
+21:10:32 | R2-22-C
+OPERATOR: Mira Kael (MK-22)
+ACTION: MODIFY
+SETTING: audit rotation
+CHANGE: 21:30 -> 21:20
 STATUS: APPROVED
 
-21:03:27  D-63
-RESOURCE: T-32
-CHANGE: prediction threshold 0.72 -> 0.68
-STATUS: APPROVED
-
-21:07:46  D-64
-RESOURCE: T-32
-CHANGE: recovery mode AUTO -> MANUAL
-STATUS: PENDING
-
-21:09:11  D-65
-RESOURCE: T-32
-CHANGE: recovery window 30s -> 10s
-STATUS: APPROVED
-
-21:12:03  D-64
-RESOURCE: T-32
-ACTION: REVERTED
-
-21:13:19  D-66
-RESOURCE: T-32
-CHANGE: safety threshold 0.68 -> 0.71
-STATUS: APPROVED
-
-21:16:02  D-67
-RESOURCE: T-32
-CHANGE: archive verbosity LOW -> HIGH
-STATUS: APPROVED
-
-NOTE: approval status describes whether a change was permitted by workflow. It does not
-indicate whether the resulting state was causal to the incident.
+21:12:00 | CONFIGURATION SNAPSHOT
+More than one changed value is present; the snapshot does not label a causal change.
 
 AUDIT NOTE
-A later audit action changes the presentation of historical records. The original change remains inferable only by correlating access and incident timing.
+The audit view may be revised after an event. Compare it with independent records before treating its order as authoritative.

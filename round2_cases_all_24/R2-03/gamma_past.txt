@@ -1,79 +1,57 @@
-CHRONOS // GAMMA // PAST ACCESS HISTORY
+CHRONOS // GAMMA // OPERATOR ACCESS HISTORY
 CASE R2-03
-
 ACCESS ARCHIVE — 20:40–21:20
 
-21:01:44
-USER: Aria Sen
-ID: AS-17
-ACTION: READ
-RESOURCE: T-13
-SESSION: S-88A
-AUTHORIZATION: VALID
+REGISTERED CANDIDATES
+Aria Sen | AS-17 | timeline analyst
+Noah Vale | NV-09 | systems engineer
+Mira Kael | MK-22 | security auditor
 
-21:05:12
-USER: Noah Vale
-ID: NV-09
-ACTION: APPROVE
-RESOURCE: D-44
-SESSION: S-88B
-AUTHORIZATION: VALID
-
-21:07:31
-USER: Mira Kael
-ID: MK-22
-ACTION: READ
-RESOURCE: T-13
-SESSION: S-88C
-AUTHORIZATION: VALID
-
-21:08:02
-USER: Aria Sen
-ID: AS-17
+RECORDED ACTIONS
+21:03:27
+USER: Noah Vale (NV-09)
 ACTION: MODIFY
-RESOURCE: D-45
-SESSION: S-803
+RESOURCE: R2-03-B
+DETAIL: archive restore mode: AUTOMATIC -> ASSISTED
+SESSION: S-NV-09-2
 AUTHORIZATION: VALID
-
-21:08:41
-USER: Elias Voss
-ID: EV-04
-ACTION: READ
-RESOURCE: RECOVERY
-SESSION: S-88D
-AUTHORIZATION: VALID
-
-21:10:19
-USER: Aria Sen
-ID: AS-17
+21:08:14
+USER: Aria Sen (AS-17)
 ACTION: MODIFY
-RESOURCE: D-46
-SESSION: S-803
+RESOURCE: R2-03-A
+DETAIL: rollback anchor: latest stable -> previous checkpoint
+SESSION: S-AS-17-1
 AUTHORIZATION: VALID
-
-21:12:03
-USER: Aria Sen
-ID: AS-17
-ACTION: REVERT
-RESOURCE: D-45
-SESSION: S-803
+21:10:32
+USER: Mira Kael (MK-22)
+ACTION: MODIFY
+RESOURCE: R2-03-C
+DETAIL: safety latch: ENFORCE -> MONITOR
+SESSION: S-MK-22-3
 AUTHORIZATION: VALID
-
-21:13:07
-USER: Aria Sen
-ID: AS-17
+21:11:42
+USER: Aria Sen (AS-17)
 ACTION: READ
-RESOURCE: AUDIT
-SESSION: S-88A
+RESOURCE: SERVICE STATUS
+DETAIL: Reviewed current status
+SESSION: S-AS-17-1
+AUTHORIZATION: VALID
+21:12:18
+USER: Noah Vale (NV-09)
+ACTION: READ
+RESOURCE: CONFIG SNAPSHOT
+DETAIL: Reviewed active values
+SESSION: S-NV-09-2
+AUTHORIZATION: VALID
+21:13:06
+USER: Mira Kael (MK-22)
+ACTION: READ
+RESOURCE: AUDIT HISTORY
+DETAIL: Reviewed recent operations
+SESSION: S-MK-22-3
 AUTHORIZATION: VALID
 
-21:13:44
-USER: Mira Kael
-ID: MK-22
-ACTION: EXPORT
-RESOURCE: T-13/AUDIT
-SESSION: S-88C
-AUTHORIZATION: VALID
+AUDIT NOTE
+The archive attributes recorded operations to registered sessions. It does not independently establish whether an operation explains the incident.
 
-ARCHIVE INTERPRETATION
-READ and EXPORT events establish observation, not authorship. APPROVE establishes workflow authority, not execution. MODIFY/REVERT/SCHEDULE events must be matched against the state that existed when the incident began.
+Cross-reference action IDs and timestamps with ALPHA and BETA before deciding which action is causally relevant.

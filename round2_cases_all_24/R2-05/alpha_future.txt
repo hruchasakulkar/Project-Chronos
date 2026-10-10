@@ -1,42 +1,35 @@
-CHRONOS // ALPHA // FUTURE CONFIGURATION AUDIT
+CHRONOS // ALPHA // CONFIGURATION AUDIT
 CASE R2-05
 INCIDENT: Permission cascade
 
-CONFIGURATION DELTAS — T-15
+SYSTEM BASELINE — 20:55
+Primary service: ACTIVE
+Configuration snapshot: PRE-INCIDENT
+Queue, archive, and service checks: within normal range
+Prior successful run: recorded
 
-20:58:14  D-45
-RESOURCE: T-15
-CHANGE: observation window 90s -> 120s
+CHANGE HISTORY
+21:03:27 | R2-05-B
+OPERATOR: Aria Sen (AS-17)
+ACTION: MODIFY
+SETTING: retry queue limit
+CHANGE: 3 -> 2
+STATUS: APPROVED
+21:08:14 | R2-05-A
+OPERATOR: Noah Vale (NV-09)
+ACTION: MODIFY
+SETTING: inherited permission scope
+CHANGE: LOCAL -> CASCADE
+STATUS: APPROVED
+21:10:32 | R2-05-C
+OPERATOR: Mira Kael (MK-22)
+ACTION: MODIFY
+SETTING: audit verbosity
+CHANGE: LOW -> HIGH
 STATUS: APPROVED
 
-21:03:27  D-46
-RESOURCE: T-15
-CHANGE: prediction threshold 0.72 -> 0.68
-STATUS: APPROVED
+21:12:00 | CONFIGURATION SNAPSHOT
+More than one changed value is present; the snapshot does not label a causal change.
 
-21:07:46  D-47
-RESOURCE: T-15
-CHANGE: recovery mode AUTO -> MANUAL
-STATUS: PENDING
-
-21:09:11  D-48
-RESOURCE: T-15
-CHANGE: recovery window 30s -> 10s
-STATUS: APPROVED
-
-21:12:03  D-47
-RESOURCE: T-15
-ACTION: REVERTED
-
-21:13:19  D-49
-RESOURCE: T-15
-CHANGE: safety threshold 0.68 -> 0.71
-STATUS: APPROVED
-
-21:16:02  D-50
-RESOURCE: T-15
-CHANGE: archive verbosity LOW -> HIGH
-STATUS: APPROVED
-
-NOTE: approval status describes whether a change was permitted by workflow. It does not
-indicate whether the resulting state was causal to the incident.
+AUDIT NOTE
+Approval and successful loading confirm workflow completion, not whether a value was appropriate for the workload.

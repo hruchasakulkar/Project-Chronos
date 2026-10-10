@@ -1,7 +1,7 @@
 {
   "case_id": "R2-24",
   "archetype": "Evidence Cover-Up",
-  "incident": "a temporary diagnostic change is followed by selective clearing of its access trail",
+  "incident": "Diagnostic trace gap",
   "culprit": "Elias Voss",
   "candidates": [
     {
@@ -25,6 +25,6 @@
     "beta": "incident_report.txt",
     "gamma": "access_history.log"
   },
-  "intended_deduction": "Requires correlating multiple plausible configuration changes, incident timing, and access/session history; no single file identifies the culprit.",
-  "difficulty_target": "5/5"
+  "intended_deduction": "Correlate configuration or schedule history with the incident timeline and operator activity. No single file identifies the culprit.",
+  "difficulty_target": "3/5"
 }

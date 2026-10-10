@@ -1,90 +1,57 @@
-CHRONOS // GAMMA // PAST ACCESS HISTORY
+CHRONOS // GAMMA // SCHEDULE AND ACCESS HISTORY
 CASE R2-15
-
 ACCESS ARCHIVE — 20:40–21:20
 
-21:01:44
-USER: Aria Sen
-ID: AS-17
-ACTION: READ
-RESOURCE: T-25
-SESSION: S-88A
-AUTHORIZATION: VALID
+REGISTERED CANDIDATES
+Aria Sen | AS-17 | timeline analyst
+Noah Vale | NV-09 | systems engineer
+Mira Kael | MK-22 | security auditor
 
-21:05:12
-USER: Noah Vale
-ID: NV-09
-ACTION: APPROVE
-RESOURCE: D-56
-SESSION: S-88B
-AUTHORIZATION: VALID
-
-21:07:31
-USER: Mira Kael
-ID: MK-22
-ACTION: READ
-RESOURCE: T-25
-SESSION: S-88C
-AUTHORIZATION: VALID
-
-21:08:02
-USER: Aria Sen
-ID: AS-17
-ACTION: MODIFY
-RESOURCE: D-57
-SESSION: S-815
-AUTHORIZATION: VALID
-
-20:41:09
-USER: Aria Sen
-ID: AS-17
+RECORDED ACTIONS
+21:03:27
+USER: Noah Vale (NV-09)
 ACTION: SCHEDULE
-RESOURCE: D-57
-SESSION: S-815
+RESOURCE: R2-15-B
+DETAIL: prediction refresh: 21:08 -> 21:15
+SESSION: S-NV-09-2
 AUTHORIZATION: VALID
-
-21:08:41
-USER: Elias Voss
-ID: EV-04
+21:06:12
+USER: Aria Sen (AS-17)
+ACTION: SCHEDULE
+RESOURCE: R2-15-A
+DETAIL: invalidation trigger: ON-UPDATE -> HOURLY
+SESSION: S-AS-17-1
+AUTHORIZATION: VALID
+21:10:32
+USER: Mira Kael (MK-22)
+ACTION: SCHEDULE
+RESOURCE: R2-15-C
+DETAIL: archive rotation: 21:05 -> 21:20
+SESSION: S-MK-22-3
+AUTHORIZATION: VALID
+21:11:42
+USER: Aria Sen (AS-17)
 ACTION: READ
-RESOURCE: RECOVERY
-SESSION: S-88D
+RESOURCE: SCHEDULE QUEUE
+DETAIL: Reviewed current status
+SESSION: S-AS-17-1
 AUTHORIZATION: VALID
-
-21:10:19
-USER: Aria Sen
-ID: AS-17
-ACTION: MODIFY
-RESOURCE: D-58
-SESSION: S-815
-AUTHORIZATION: VALID
-
-21:12:03
-USER: Aria Sen
-ID: AS-17
-ACTION: REVERT
-RESOURCE: D-57
-SESSION: S-815
-AUTHORIZATION: VALID
-
-21:13:07
-USER: Aria Sen
-ID: AS-17
+21:12:18
+USER: Noah Vale (NV-09)
 ACTION: READ
-RESOURCE: AUDIT
-SESSION: S-88A
+RESOURCE: ACTIVE SCHEDULE
+DETAIL: Reviewed active values
+SESSION: S-NV-09-2
+AUTHORIZATION: VALID
+21:13:06
+USER: Mira Kael (MK-22)
+ACTION: READ
+RESOURCE: AUDIT HISTORY
+DETAIL: Reviewed recent operations
+SESSION: S-MK-22-3
 AUTHORIZATION: VALID
 
-21:13:44
-USER: Mira Kael
-ID: MK-22
-ACTION: EXPORT
-RESOURCE: T-25/AUDIT
-SESSION: S-88C
-AUTHORIZATION: VALID
+SCHEDULE NOTE
+This archive records who created or reviewed actions. Use ALPHA to determine when each action became effective.
 
-ARCHIVE INTERPRETATION
-READ and EXPORT events establish observation, not authorship. APPROVE establishes workflow authority, not execution. MODIFY/REVERT/SCHEDULE events must be matched against the state that existed when the incident began.
-
-SCHEDULER WARNING
-The time an action was queued is not necessarily the time its effect became active.
+Cross-reference action IDs and timestamps with ALPHA and BETA before deciding which action is causally relevant.

@@ -13,7 +13,7 @@ from ..services.round2_service import (
     reserve_ai_question,
     save_ai_response,
     get_conversation,
-    submit_culprit,
+    complete_round2 as complete_round2_service,
 )
 
 
@@ -26,11 +26,6 @@ router = APIRouter(
 class AIQuestionRequest(BaseModel):
     team_id: int = Field(..., ge=1)
     message: str = Field(..., min_length=1, max_length=500)
-
-
-class CulpritSubmissionRequest(BaseModel):
-    team_id: int = Field(..., ge=1)
-    suspect: str = Field(..., min_length=1, max_length=100)
 
 
 def _require_team(team_id: int):
@@ -174,16 +169,6 @@ def ai_status(team_id: int = Query(..., ge=1)):
 async def chat(body: AIQuestionRequest):
     state = _require_team(body.team_id)
 
-    # don't allow AI questions after the culprit has been submitted
-    if state["submission"]:
-        raise HTTPException(
-            status_code=409,
-            detail={
-                "code": "round_completed",
-                "message": "Round 2 has already been completed."
-            }
-        )
-
     question = body.message.strip()
 
     if not question:
@@ -285,84 +270,20 @@ def conversation(team_id: int = Query(..., ge=1)):
     return get_conversation(team_id)
 
 
-@router.post("/submit")
-def submit(body: CulpritSubmissionRequest):
-    state = _require_team(body.team_id)
+@router.post("/complete")
+def complete(team_id: int = Query(..., ge=1)):
+    _require_team(team_id)
+    result = complete_round2_service(team_id)
 
-    if state["submission"]:
-        raise HTTPException(
-            status_code=409,
-            detail={
-                "code": "already_submitted",
-                "message": "A culprit has already been submitted."
-            }
-        )
-
-    culprit = body.suspect.strip()
-
-    if not culprit:
-        raise HTTPException(
-            status_code=422,
-            detail={
-                "code": "empty_suspect",
-                "message": "Select a suspect."
-            }
-        )
-
-    result = submit_culprit(
-        body.team_id,
-        culprit
-    )
+    if result is None:
+        raise HTTPException(status_code=404, detail="Team not found.")
 
     if not result["success"]:
-        error = result.get("error", "Round 2 submission failed.")
+        raise HTTPException(status_code=409, detail=result["error"])
 
-        if error == "No Round 2 case assigned.":
-            raise HTTPException(
-                status_code=503,
-                detail={
-                    "code": "case_not_configured",
-                    "message": "No Round 2 case is configured for this team."
-                }
-            )
-
-        if error == "Invalid suspect.":
-            raise HTTPException(
-                status_code=422,
-                detail={
-                    "code": "invalid_candidate",
-                    "message": "Select a valid suspect for this case."
-                }
-            )
-
-        if error == "Round 2 submission already made.":
-            raise HTTPException(
-                status_code=409,
-                detail={
-                    "code": "already_submitted",
-                    "message": "A culprit has already been submitted."
-                }
-            )
-
-        raise HTTPException(
-            status_code=400,
-            detail={
-                "code": "submission_failed",
-                "message": error
-            }
-        )
-
-    # deliberately do NOT return correctness or score to the player
     return {
-        "team_id": body.team_id,
-        "submitted": True,
+        "team_id": team_id,
+        "completed": True,
         "state": "ROUND_2_COMPLETED",
+        "already_completed": result.get("already_completed", False),
     }
-
-
-@router.post("/culprit/submit")
-def culprit_submit(body: CulpritSubmissionRequest):
-    """
-    Compatibility endpoint for clients using the /culprit/submit contract.
-    """
-    return submit(body)

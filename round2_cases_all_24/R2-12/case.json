@@ -1,7 +1,7 @@
 {
   "case_id": "R2-12",
   "archetype": "Compromised Identity",
-  "incident": "security identity used to alter an incident classification after the event began",
+  "incident": "Cross-timeline synchronization failure",
   "culprit": "Mira Kael",
   "candidates": [
     {
@@ -25,6 +25,6 @@
     "beta": "incident_report.txt",
     "gamma": "access_history.log"
   },
-  "intended_deduction": "Requires correlating multiple plausible configuration changes, incident timing, and access/session history; no single file identifies the culprit.",
-  "difficulty_target": "5/5"
+  "intended_deduction": "Correlate multiple plausible configuration changes, incident timing, and access history; no single file identifies the culprit.",
+  "difficulty_target": "3/5"
 }

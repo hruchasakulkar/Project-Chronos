@@ -6,7 +6,6 @@ from ..database.connection import get_connection
 AI_QUESTION_COSTS = [5.0, 5.0, 10.0]
 MAX_AI_QUESTIONS = 3
 STARTING_AI_POINTS = 20.0
-CULPRIT_POINTS = 30.0
 
 
 def _get_team_case(connection, team_id: int):
@@ -265,23 +264,6 @@ def get_team_state(team_id: int):
             (team_id,),
         ).fetchone()[0]
 
-        submission = connection.execute(
-            """
-            SELECT
-                suspect_identified,
-                is_correct,
-                points_awarded,
-                ai_points_remaining,
-                round2_total_score,
-                submitted_at
-            FROM round2_submissions
-            WHERE team_id = ?
-            ORDER BY id DESC
-            LIMIT 1
-            """,
-            (team_id,),
-        ).fetchone()
-
         return {
             "team_id": team["team_id"],
             "team_name": team["team_name"],
@@ -308,7 +290,6 @@ def get_team_state(team_id: int):
                 0.0,
                 STARTING_AI_POINTS - float(points_spent),
             ),
-            "submission": dict(submission) if submission else None,
         }
 
     finally:
@@ -410,6 +391,51 @@ def start_round2(team_id: int):
         connection.close()
 
 
+
+def complete_round2(team_id: int):
+    """Complete the investigation without collecting a culprit submission."""
+    connection = get_connection()
+
+    try:
+        team = connection.execute(
+            """
+            SELECT current_state
+            FROM teams
+            WHERE id = ?
+            """,
+            (team_id,),
+        ).fetchone()
+
+        if team is None:
+            return None
+
+        if team["current_state"] == "ROUND_2_COMPLETED":
+            return {"success": True, "already_completed": True}
+
+        if team["current_state"] != "ROUND_2_ACTIVE":
+            return {
+                "success": False,
+                "error": "Round 2 is not active.",
+            }
+
+        connection.execute(
+            """
+            UPDATE teams
+            SET
+                current_state = 'ROUND_2_COMPLETED',
+                round2_completed_at = CURRENT_TIMESTAMP,
+                updated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+            """,
+            (team_id,),
+        )
+        connection.commit()
+
+        return {"success": True, "already_completed": False}
+
+    finally:
+        connection.close()
+
 def reserve_ai_question(team_id: int):
     state = get_team_state(team_id)
 
@@ -507,121 +533,3 @@ def get_conversation(team_id: int):
     finally:
         connection.close()
 
-
-def submit_culprit(team_id: int, suspect: str):
-    connection = get_connection()
-
-    try:
-        case = _get_team_case(connection, team_id)
-
-        if case is None:
-            return {
-                "success": False,
-                "error": "No Round 2 case assigned.",
-            }
-
-        existing = connection.execute(
-            """
-            SELECT id
-            FROM round2_submissions
-            WHERE team_id = ?
-            LIMIT 1
-            """,
-            (team_id,),
-        ).fetchone()
-
-        if existing:
-            return {
-                "success": False,
-                "error": "Round 2 submission already made.",
-            }
-
-        suspect_row = connection.execute(
-            """
-            SELECT suspect_name
-            FROM round2_case_suspects
-            WHERE case_id = ?
-              AND LOWER(suspect_name) = LOWER(?)
-            LIMIT 1
-            """,
-            (case["case_id"], suspect),
-        ).fetchone()
-
-        if suspect_row is None:
-            return {
-                "success": False,
-                "error": "Invalid suspect.",
-            }
-
-        selected_suspect = suspect_row["suspect_name"]
-
-        is_correct = (
-            selected_suspect.strip().lower()
-            == case["culprit"].strip().lower()
-        )
-
-        culprit_points = CULPRIT_POINTS if is_correct else 0.0
-
-        chat_points = connection.execute(
-            """
-            SELECT COALESCE(SUM(points_deducted), 0)
-            FROM round2_chat_messages
-            WHERE team_id = ?
-            """,
-            (team_id,),
-        ).fetchone()[0]
-
-        ai_points_remaining = max(
-            0.0,
-            STARTING_AI_POINTS - float(chat_points),
-        )
-
-        round2_total_score = culprit_points + ai_points_remaining
-
-        connection.execute(
-            """
-            INSERT INTO round2_submissions (
-                team_id,
-                suspect_identified,
-                is_correct,
-                points_awarded,
-                ai_points_remaining,
-                round2_total_score
-            )
-            VALUES (?, ?, ?, ?, ?, ?)
-            """,
-            (
-                team_id,
-                selected_suspect,
-                int(is_correct),
-                culprit_points,
-                ai_points_remaining,
-                round2_total_score,
-            ),
-        )
-
-        connection.execute(
-            """
-            UPDATE teams
-            SET
-                round2_score = ?,
-                current_state = 'ROUND_2_COMPLETED',
-                round2_completed_at = CURRENT_TIMESTAMP,
-                updated_at = CURRENT_TIMESTAMP
-            WHERE id = ?
-            """,
-            (
-                round2_total_score,
-                team_id,
-            ),
-        )
-
-        connection.commit()
-
-        return {
-            "success": True,
-            "submitted": True,
-        }
-
-    finally:
-        connection.close()

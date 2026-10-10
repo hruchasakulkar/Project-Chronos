@@ -1,42 +1,35 @@
-CHRONOS // ALPHA // FUTURE CONFIGURATION AUDIT
+CHRONOS // ALPHA // CONFIGURATION AUDIT
 CASE R2-02
 INCIDENT: Cross-timeline routing fracture
 
-CONFIGURATION DELTAS — T-12
+SYSTEM BASELINE — 20:55
+Primary service: ACTIVE
+Configuration snapshot: PRE-INCIDENT
+Queue, archive, and service checks: within normal range
+Prior successful run: recorded
 
-20:58:14  D-42
-RESOURCE: T-12
-CHANGE: observation window 90s -> 120s
+CHANGE HISTORY
+21:03:27 | R2-02-B
+OPERATOR: Aria Sen (AS-17)
+ACTION: MODIFY
+SETTING: prediction horizon
+CHANGE: 12 steps -> 10 steps
+STATUS: APPROVED
+21:08:14 | R2-02-A
+OPERATOR: Mira Kael (MK-22)
+ACTION: MODIFY
+SETTING: primary route weight
+CHANGE: 0.65 -> 0.35
+STATUS: APPROVED
+21:10:32 | R2-02-C
+OPERATOR: Noah Vale (NV-09)
+ACTION: MODIFY
+SETTING: retry limit
+CHANGE: 3 attempts -> 2 attempts
 STATUS: APPROVED
 
-21:03:27  D-43
-RESOURCE: T-12
-CHANGE: prediction threshold 0.72 -> 0.68
-STATUS: APPROVED
+21:12:00 | CONFIGURATION SNAPSHOT
+More than one changed value is present; the snapshot does not label a causal change.
 
-21:07:46  D-44
-RESOURCE: T-12
-CHANGE: recovery mode AUTO -> MANUAL
-STATUS: PENDING
-
-21:09:11  D-45
-RESOURCE: T-12
-CHANGE: recovery window 30s -> 10s
-STATUS: APPROVED
-
-21:12:03  D-44
-RESOURCE: T-12
-ACTION: REVERTED
-
-21:13:19  D-46
-RESOURCE: T-12
-CHANGE: safety threshold 0.68 -> 0.71
-STATUS: APPROVED
-
-21:16:02  D-47
-RESOURCE: T-12
-CHANGE: archive verbosity LOW -> HIGH
-STATUS: APPROVED
-
-NOTE: approval status describes whether a change was permitted by workflow. It does not
-indicate whether the resulting state was causal to the incident.
+AUDIT NOTE
+Approval and successful loading confirm workflow completion, not whether a value was appropriate for the workload.

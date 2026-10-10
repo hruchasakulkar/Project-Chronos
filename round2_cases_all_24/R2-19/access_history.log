@@ -1,90 +1,57 @@
-CHRONOS // GAMMA // PAST ACCESS HISTORY
+CHRONOS // GAMMA // ACCESS AND RECORD-HANDLING HISTORY
 CASE R2-19
-
 ACCESS ARCHIVE — 20:40–21:20
 
-21:01:44
-USER: Elias Voss
-ID: EV-04
-ACTION: READ
-RESOURCE: T-29
-SESSION: S-88A
-AUTHORIZATION: VALID
+REGISTERED CANDIDATES
+Elias Voss | EV-04 | archive operator
+Aria Sen | AS-17 | timeline analyst
+Noah Vale | NV-09 | systems engineer
 
-21:05:12
-USER: Aria Sen
-ID: AS-17
-ACTION: APPROVE
-RESOURCE: D-60
-SESSION: S-88B
-AUTHORIZATION: VALID
-
-21:07:31
-USER: Noah Vale
-ID: NV-09
-ACTION: READ
-RESOURCE: T-29
-SESSION: S-88C
-AUTHORIZATION: VALID
-
-21:08:02
-USER: Elias Voss
-ID: EV-04
+RECORDED ACTIONS
+21:03:27
+USER: Aria Sen (AS-17)
 ACTION: MODIFY
-RESOURCE: D-61
-SESSION: S-819
+RESOURCE: R2-19-B
+DETAIL: archive index mode: FULL -> COMPACT
+SESSION: S-AS-17-2
 AUTHORIZATION: VALID
-
-21:08:41
-USER: Mira Kael
-ID: MK-22
-ACTION: READ
-RESOURCE: RECOVERY
-SESSION: S-88D
-AUTHORIZATION: VALID
-
-21:10:19
-USER: Elias Voss
-ID: EV-04
+21:07:44
+USER: Elias Voss (EV-04)
 ACTION: MODIFY
-RESOURCE: D-62
-SESSION: S-819
+RESOURCE: R2-19-A
+DETAIL: configuration checksum policy: STRICT -> DEFERRED
+SESSION: S-EV-04-1
 AUTHORIZATION: VALID
-
-21:12:03
-USER: Elias Voss
-ID: EV-04
-ACTION: REVERT
-RESOURCE: D-61
-SESSION: S-819
+21:10:32
+USER: Noah Vale (NV-09)
+ACTION: MODIFY
+RESOURCE: R2-19-C
+DETAIL: log rotation: 21:30 -> 21:15
+SESSION: S-NV-09-3
 AUTHORIZATION: VALID
-
-21:18:22
-USER: Elias Voss
-ID: EV-04
-ACTION: EDIT-AUDIT
-RESOURCE: D-61
-SESSION: S-819
+21:12:18
+USER: Elias Voss (EV-04)
+ACTION: REVISE
+RESOURCE: AUDIT VIEW
+DETAIL: Updated a displayed record field
+SESSION: S-EV-04-1
 AUTHORIZATION: VALID
-
-21:13:07
-USER: Elias Voss
-ID: EV-04
-ACTION: READ
-RESOURCE: AUDIT
-SESSION: S-88A
-AUTHORIZATION: VALID
-
-21:13:44
-USER: Noah Vale
-ID: NV-09
+21:12:42
+USER: Aria Sen (AS-17)
 ACTION: EXPORT
-RESOURCE: T-29/AUDIT
-SESSION: S-88C
+RESOURCE: AUDIT SNAPSHOT
+DETAIL: Created a separate copy for review
+SESSION: S-AS-17-2
+AUTHORIZATION: VALID
+21:13:06
+USER: Noah Vale (NV-09)
+ACTION: ROTATE
+RESOURCE: LOG WINDOW
+DETAIL: Applied archive rotation
+SESSION: S-NV-09-3
 AUTHORIZATION: VALID
 
-ARCHIVE INTERPRETATION
-READ and EXPORT events establish observation, not authorship. APPROVE establishes workflow authority, not execution. MODIFY/REVERT/SCHEDULE events must be matched against the state that existed when the incident began.
+ARCHIVE NOTE
+All three candidates interacted with configuration or record-handling functions. Compare each action with the independent event sequence.
 
-AUDIT WARNING
-Post-incident audit activity may alter labels or remove diagnostic visibility. Distinguish investigation activity from actions that conceal the initiating state.
+Cross-reference action IDs and timestamps with ALPHA and BETA before deciding which action is causally relevant.

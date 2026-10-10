@@ -1,28 +1,20 @@
 CHRONOS // BETA // PRESENT INCIDENT REPORT
 CASE R2-08
+INCIDENT: Archive retention gap
 
-INCIDENT: security account used from an unregistered console to alter archive retention
+INCIDENT TIMELINE
+21:14:02 | First abnormal behaviour recorded
+21:14:36 | Affected service begins to diverge from baseline
+21:15:11 | Monitoring records a sustained inconsistency
+21:16:04 | Reconciliation does not restore the expected state
+21:17:31 | Cross-timeline result falls outside its normal operating range
 
-21:14:02  FIRST INSTABILITY DETECTED
-21:15:18  prediction drift / synchronization variance begins
-21:16:04  automated recovery fails to restore expected state
-21:17:31  timeline synchronization drops below safe threshold
-
-PRELIMINARY ANALYSIS
-- the first approved threshold change is NOT sufficient to explain the failure.
-- telemetry indicates that the recovery subsystem entered a non-default state shortly
-  before the first failed recovery.
-- the relevant state was present for approximately 4–6 minutes before instability
-  became visible.
-- a later approved change occurred after the failure had already begun and is therefore
-  unlikely to be the initiating event.
-
-POSSIBLE SOURCES
-1. prediction configuration
-2. recovery configuration
-3. operator override / scheduled state
+OBSERVATIONS
+- A contiguous interval of records was absent from the retained archive, while neighboring records remained readable and the index reported no broad corruption.
+- Index compaction can change lookup layout but should not remove a complete time interval. The rotation change was scheduled for a later maintenance window.
+- The pre-incident snapshot and later event record agree on the broad time window, but neither identifies an operator.
+- More than one configuration or maintenance action occurred before the first visible symptom.
+- Session identity, workstation context, and the technical effect of an action are separate questions.
 
 INVESTIGATION NOTE
-Do not treat an APPROVED label as proof that the change was harmless.
-Do not treat a READ event as proof of modification.
-The initiating state must be reconstructed from the timeline and access history.
+Use ALPHA to reconstruct the relevant state, BETA to establish behaviour and timing, and GAMMA to attribute actions. No single record is sufficient on its own.

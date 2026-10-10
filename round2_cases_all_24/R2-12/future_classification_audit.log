@@ -1,6 +1,6 @@
 CHRONOS // ALPHA // FUTURE CONFIGURATION AUDIT
 CASE R2-12
-INCIDENT: security identity used to alter an incident classification after the event began
+INCIDENT: Cross-timeline synchronization failure
 
 CONFIGURATION DELTAS — T-22
 
@@ -38,8 +38,11 @@ RESOURCE: T-22
 CHANGE: archive verbosity LOW -> HIGH
 STATUS: APPROVED
 
-NOTE: approval status describes whether a change was permitted by workflow. It does not
-indicate whether the resulting state was causal to the incident.
+NOTE: approval status describes whether a change was
+permitted by workflow. It does not establish whether
+the resulting state contributed to the incident.
 
-SECURITY NOTE
-D-54 was issued under a valid identity, but its console fingerprint is not present in the registered workstation list.
+CONFIGURATION NOTE
+A pending change may appear in the activity history
+without becoming the active system setting.
+The state active at the relevant time must be checked.

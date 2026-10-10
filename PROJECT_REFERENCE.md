@@ -181,7 +181,7 @@ Do not invent these values.
 
 # 6. Round 2 — CHRONOS Terminal
 
-Round 2 is a digital investigation.
+Round 2 is a digital investigation only. Players inspect evidence, compare records, and use the restricted assistant for interpretation. There is no player-facing culprit submission, suspect-selection endpoint, or culprit-based scoring action in this round.
 
 Players use information/code fragments obtained from Round 1 to access evidence from CHRONOS.
 
@@ -527,7 +527,6 @@ POST /api/round2/unlock
 POST /api/round2/hint
 POST /api/round2/chat
 GET  /api/round2/conversation
-POST /api/round2/submit
 POST /api/round2/complete
 ```
 
